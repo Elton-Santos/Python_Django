@@ -1,35 +1,36 @@
+<!-- connectedin/usuarios/templates/registrar.html -->
+
 {% extends "base_usuario.html" %}
+
 {% block body %}
-	
-	<!-- Formulário de criação de usuário -->
 
-	<form class="form-signin" action="{% url 'registrar' %}" method="post">
-		{% csrf_token %}
-		<h2 class="form-signin-heading">Crie seu Usuário</h2>
+  <form class="form-signin" action="{% url 'registrar' %}" method="post">
+    {% csrf_token %}
 
-		<input id="id_email" name="email" type="text"
-			class="form-control" placeholder="Email *" 
-			required>
+    <h2 class="form-signin-heading">Crie seu usuário</h2>
+    <input type="text" id="id_email" name="email" class="form-control" placeholder="Email *" required autofocus>
+    <input type="text" id="id_nome" name="nome" class="form-control" placeholder="Nome *" required >
+    <input type="password" id="id_senha" name="senha" class="form-control"  placeholder="Senha *" required>
 
-		<input id="id_nome" name="nome" type="text"
-			class="form-control" placeholder="Nome *" 
-			required>
+    <hr />
+    <input type="text" id="id_telefone" name="telefone" class="form-control" placeholder="Telefone">
+    <input type="text" id="id_nome_empresa" name="nome_empresa" class="form-control" placeholder="Empresa">
+    <hr />
 
-		<input id="id_senha" name="senha" type="password"
-			class="form-control" placeholder="senha *" 
-			required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Registrar</button>
 
-		<input id="id_telefone" name="telefone" type="text"
-			class="form-control" placeholder="Telefone *">
+	<!-- if novo aqui -->
 
-		<input id="id_nome_empresa" name="nome_empresa" type="text"
-			class="form-control" placeholder="Empresa *">
+    <hr/>
 
-		<hr/>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+     {% if form.errors %}
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{form.non_field_errors}}
+      </div>
+    {% endif %}
 
-	</form>
+	<!-- fim if novo -->
 
-	<!-- Fim formulário criação de usuário-->
-
+  </form>
 {% endblock %}
